@@ -46,7 +46,15 @@ schedule_switch() {
     (
         sleep "$DEBOUNCE_SECONDS"
         log "running switch"
-        "$SWITCH" || log "switch exited non-zero ($?)"
+        if "$SWITCH"; then
+            sleep 0.8
+            pkill -x waybar 2>/dev/null || true
+            waybar </dev/null >/dev/null 2>&1 &
+            disown
+            log "waybar restarted"
+        else
+            log "switch exited non-zero ($?)"
+        fi
     ) &
     PENDING_PID=$!
 }
