@@ -28,7 +28,7 @@ sudo ufw --force enable
 sudo ufw status verbose
 
 # --- hardware: Apple Magic Keyboard A1843 (laptop 'aribook' only) ---
-if test (hostname) = aribook
+if test (cat /etc/hostname | string trim) = aribook
     echo "==> Applying Apple Magic Keyboard fixes (aribook)..."
     echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="026c", TEST=="power/control", ATTR{power/control}="on"' \
         | sudo tee /etc/udev/rules.d/50-apple-keyboard-usb.rules > /dev/null
