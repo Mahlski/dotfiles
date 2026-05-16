@@ -23,7 +23,6 @@ LOG_FILE="$LOG_DIR/monitor.log"
 LOCK_FILE="$LOG_DIR/monitor-switch.lock"
 MAX_ATTEMPTS=6
 SETTLE_MS=500
-WAYBAR_SETTLE_MS=800
 
 mkdir -p "$LOG_DIR"
 
@@ -37,14 +36,6 @@ if ! flock -w 5 9; then
     log "could not acquire lock; another switch in flight, exiting"
     exit 0
 fi
-
-restart_waybar() {
-    pkill -x waybar 2>/dev/null || true
-    sleep "0.$(printf '%03d' "$WAYBAR_SETTLE_MS")"
-    waybar >/dev/null 2>&1 &
-    disown
-    log "waybar restarted"
-}
 
 # Returns 0 if monitor is currently connected (present in `monitors all`).
 external_present() {
@@ -100,12 +91,10 @@ reconcile() {
 
         if [[ $want_disabled -eq 1 && $cur -eq 0 ]]; then
             log "converged: external present, internal disabled"
-            restart_waybar
             return 0
         fi
         if [[ $want_disabled -eq 0 && $cur -eq 1 ]]; then
             log "converged: external absent, internal enabled"
-            restart_waybar
             return 0
         fi
 
