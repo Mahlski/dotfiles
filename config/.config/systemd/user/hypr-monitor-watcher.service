@@ -1,0 +1,21 @@
+[Unit]
+Description=Hyprland monitor hotplug watcher (eDP-1 / HDMI-A-1)
+# Wait for the graphical session so XDG_RUNTIME_DIR is populated. The
+# watcher itself probes for the Hyprland socket, so it is fine if
+# Hyprland isn't up yet — it will retry until the socket appears.
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.config/hypr/scripts/monitor-watcher.sh
+Restart=always
+RestartSec=2
+# Don't drag the unit into a failed state on transient socket loss; the
+# script's internal reconnect loop handles that.
+SuccessExitStatus=0 1
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical-session.target

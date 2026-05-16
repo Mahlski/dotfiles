@@ -1,0 +1,71 @@
+# ~/.config/dunst/dunstrc
+
+[global]
+    origin = top-center
+    offset = (0, 40)
+
+    width = 420
+    height = (0, 300)
+    notification_limit = 5
+
+    background = "#283457"
+    foreground = "#7aa2f7"
+
+    frame_width = 1
+    frame_color = "#394b70"
+
+    corner_radius = 12
+
+    padding = 13
+    horizontal_padding = 14
+    gap_size = 10
+    separator_height = 0
+
+    font = "Sans 10"
+    markup = full
+    format = "<b>%s</b>\n%b"
+
+    alignment = left
+    vertical_alignment = center
+
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+
+    timeout = 5
+    ignore_dbusclose = false
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 420
+
+
+[urgency_low]
+    background = "#283457"
+    foreground = "#6f7fa8"
+    frame_color = "#394b70"
+    timeout = 4
+
+
+[urgency_normal]
+    background = "#283457"
+    foreground = "#7aa2f7"
+    frame_color = "#394b70"
+    timeout = 5
+
+
+[urgency_critical]
+    background = "#283457"
+    foreground = "#ff9e64"
+    frame_color = "#ff9e64"
+    timeout = 0

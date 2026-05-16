@@ -1,0 +1,14 @@
+# SSH — never commit keys; config only
+ssh/.ssh/*
+!ssh/.ssh/config
+
+# Fish — auto-managed, machine-specific
+config/.config/fish/fish_variables
+
+# Neovim — machine-specific lockfile + local Claude Code settings
+config/.config/nvim/lazy-lock.json
+config/.config/nvim/.claude/
+
+# Junk
+*.bak
+*.log
