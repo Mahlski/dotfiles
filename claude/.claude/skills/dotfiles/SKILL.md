@@ -77,7 +77,6 @@ Mostly handled by the repo `.gitignore`, but flag if they appear:
 | `**/fish_variables` | Fish auto-manages it; machine-specific |
 | `**/lazy-lock.json` | Machine-specific nvim lockfile |
 | `*.bak`, `*.log` | Transient noise |
-| `nvim/.claude/` | Local Claude Code settings |
 
 ## Commit message format
 
